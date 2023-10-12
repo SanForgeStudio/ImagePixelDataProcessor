@@ -6,15 +6,20 @@ import sys
 # Define the image file path
 image_path = "data_image.png"
 
+window = None  # Declare the window variable
+
 def open_image():
     file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff")])
     if file_path:
         display_image(file_path)
 
 def exit_viewer():
-    window.destroy()
+    if window:
+        window.destroy()
 
 def display_image(image_path, resize_width=None, resize_height=None):
+    global window  # Use the global window variable
+
     # Create a new window
     window = tk.Tk()
     window.title("Pixel Data Image Viewer")
