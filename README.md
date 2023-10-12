@@ -5,6 +5,16 @@ Image Pixel Data Processor is a straightforward tool made in python for processi
 # Description
 This tool  simplifies the process of extracting pixel data from an image and converting it into a format that can be used in your programming applications. It is particularly useful when you need to work with pixel data for tasks like image processing, computer vision, or graphics programming. By generating pixel data in a format that can be directly integrated into your code, this tool streamlines the development of image related applications.
 
+# How to use
+
+To use this simply start the start.py in the source, after you installed all the required libraries, You will have 3 options in the main menu,
+
+1.  Initialize the Pixel Data and actually get the pixel data. This will be visible in the application and a `pixel_data_output.txt` is created so you can easily copy it.
+
+2. Start the Image Viewer, so you can see your specified image.
+
+3. This allows the 
+
 # Features
 
 Here are a few features, that are currently working in this tool.
