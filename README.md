@@ -40,6 +40,14 @@ Run the Application:
 ```bash
 python start.py
 ```
+# Dependancies
+
+We used a bunch of libraries to make this processor work, see here the list:
+
+- Pillow
+- Colorama
+- Tkinter (Only if using the provided GUI for viewing images)
+- Python 3.6 or later
 
 # License
 
