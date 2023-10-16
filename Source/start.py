@@ -1,25 +1,87 @@
 import os
-import subprocess
-from PIL import Image
-from colorama import Fore, Style, init
-
-# Initialize colorama
-init(autoreset=True)
+from tkinter import *
+from tkinter import filedialog
+from PIL import Image, ImageTk
+import time
 
 # Define the image file path
 image_path = "data_image.png"
 
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+def open_image():
+    file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png *.jpg *.jpeg *.gif *.bmp *.ppm *.pgm *.tif *.tiff")])
+    if file_path:
+        # Save the selected image as data_image.png
+        image = Image.open(file_path)
+        image.save(image_path)
 
-def display_image(image_path):
-    try:
-        subprocess.Popen(['python', 'image_viewer.py', image_path])
-    except Exception as e:
-        print("Error opening image in the viewer:", e)
+def view_image():
+    display_image(image_path)
 
-def process_pixel_data():
-    clear_screen()
+def display_image(image_path, resize_width=None, resize_height=None):
+    # Create a new window for the image
+    image_window = Tk()
+    image_window.title("Pixel Data Image Viewer")
+
+    # Set the background color to black
+    image_window.configure(bg="black")
+
+    # Prevent going full screen and leave space for the taskbar
+    image_window.geometry("800x600")  # Set the initial size as needed
+    image_window.minsize(400, 300)  # Set a minimum size
+    image_window.maxsize(800, 600)  # Set a maximum size
+    image_window.resizable(False, False)  # Disable window resizing
+
+    # Load and display the image with transparency
+    image = Image.open(image_path)
+
+    if resize_width and resize_height:
+        image = image.resize((resize_width, resize_height))
+    elif resize_width:
+        aspect_ratio = image.width / image.height
+        new_height = int(resize_width / aspect_ratio)
+        image = image.resize((resize_width, new_height))
+    elif resize_height:
+        aspect_ratio = image.width / image.height
+        new_width = int(resize_height * aspect_ratio)
+        image = image.resize((new_width, resize_height))
+
+    # Create a transparent image with the same size
+    transparent_image = Image.new("RGBA", image.size, (255, 255, 255, 0))
+
+    # Paste the loaded image onto the transparent image
+    transparent_image.paste(image, (0, 0), image)
+
+    photo = ImageTk.PhotoImage(transparent_image)
+    label = Label(image_window, image=photo, bg="black")
+    label.image = photo  # Keep a reference to the image
+    label.pack(fill=BOTH, expand=YES)  # Make the label fill the window
+
+    image_window.mainloop()
+
+def process_pixel_data(output_text_widget):
+    output_text_widget.config(state=NORMAL)
+    output_text_widget.delete(1.0, END)  # Clear the previous output
+
+    # Create a tag for dark blue text
+    output_text_widget.tag_configure("blue", foreground="dark blue")
+
+    # Create a tag for green text
+    text_widget.tag_configure("green", foreground="green")
+
+    # Create a tag for red text
+    output_text_widget.tag_configure("red", foreground="red")
+
+    # Display "Generating Pixel Data" in red with a delay
+    output_text_widget.insert(END, "Generating Pixel Data", "red")
+    output_text_widget.update()
+    time.sleep(1)  # 1-second delay
+
+    # Add a delay between displaying the dots
+    for _ in range(4):
+        output_text_widget.insert(END, ".", "red")
+        output_text_widget.update()
+        time.sleep(1)  # 1-second delay
+
     # Open the selected desired image
     icon = Image.open("data_image.png")
 
@@ -29,13 +91,8 @@ def process_pixel_data():
     # Get pixel data
     pixels = list(icon.getdata())
 
-    # Author and Description
-    output_lines = []
-    output_lines.append(Fore.RED + "Generating Pixel Data...." + Style.RESET_ALL)
-    output_lines.append("")
-
     # Create a single line for the iconRaw vector
-    icon_raw_line = "PIXEL DATA OUTPUT:  { "
+    icon_raw_line = "{ "
 
     # Bit mask to extract the RGB values (8 bits for each channel)
     rgb_mask = 0xFF
@@ -44,43 +101,86 @@ def process_pixel_data():
         r, g, b = pixel[:3]
         pixel_value = (r & rgb_mask) | ((g & rgb_mask) << 8) | ((b & rgb_mask) << 16)
         icon_raw_line += str(pixel_value) + ","
-    icon_raw_line = icon_raw_line.rstrip(",") + " };"
+    icon_raw_line = icon_raw_line.rstrip(",") + " }"
 
-    # Append the iconRaw line to the output lines
-    output_lines.append(icon_raw_line)
+    # Append the iconRaw line to the output
+    output_text_widget.insert(END, "\n\n", "blue")
+    output_text_widget.insert(END, icon_raw_line + "\n\n", "blue")
+    output_text_widget.insert(END, "Pixel data has been created!", "green")
 
-    # Join the output lines into a single string
-    output_str = '\n'.join(output_lines)
-
-    # Display the output string
-    print(output_str)
-
-    # Save the output to a text file
+    # Save the output to a text file (optional)
     with open("pixel_data_output.txt", "w") as file:
-        file.write(output_str)
+        file.write(icon_raw_line)
 
-    # Add a line break for visual separation
-    print()
+    # Make the text widget read-only
+    output_text_widget.config(state='disabled')
 
-    # Wait for user input to keep the program active
-    input("Press Enter to return to the Main Menu...")
+# Create a new window for the main application
+root = Tk()
+root.title("Pixel Data Generator")
 
-while True:
-    clear_screen()
-    print(Fore.RED + "Created by: SanForge Studio" + Style.RESET_ALL)
-    print()
-    print(Fore.GREEN + "1.  Initialize Pixel Data Process" + Style.RESET_ALL)
-    print(Fore.GREEN + "2.  View Specified Image" + Style.RESET_ALL)
-    print(Fore.GREEN + "3.  Exit" + Style.RESET_ALL)
-    print()
-    choice = input("Select an option (1, 2, or 3): ")
+# Set the window icon
+root.iconbitmap("app.ico")
 
-    if choice == "1":
-        process_pixel_data()
-    elif choice == "2":
-        display_image(image_path)
-    elif choice == "3":
-        print("Goodbye!")
-        break
-    else:
-        print("Invalid option. Please select a valid option 1, 2, or 3.")
+# Create a menu bar
+menubar = Menu(root)
+root.config(menu=menubar)
+
+# File menu
+file_menu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="Open Image", command=open_image)
+file_menu.add_separator()
+file_menu.add_command(label="Exit", command=root.quit)
+
+
+# Add a new menu for Settings Size
+settings_menu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Settings", menu=settings_menu)
+
+
+# Add a new menu for Tools Size
+tool_menu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Tools", menu=tool_menu)
+
+
+# Create a frame for the side panel
+side_panel = Frame(root, bg="gray", width=150)
+side_panel.pack(side=LEFT, fill="y")
+
+# Create a button to generate pixel data
+generate_button = Button(side_panel, text="Generate Pixel Data", width=20, command=lambda: process_pixel_data(text_widget))
+generate_button.pack(pady=5)
+
+def return_to_menu():
+    display_menu()
+    
+
+# Create a button to return to the main menu
+menu_button = Button(side_panel, text="Return to Menu", width=20, command=return_to_menu)
+menu_button.pack(pady=5)
+
+def display_menu():
+    text_widget.config(state='normal')  # Enable text widget for backend updates
+    text_widget.delete(1.0, END)  # Clear the previous output
+    
+    # Add your text
+    text_widget.insert(END, "Created by: SanForge Studio\n\n")
+    text_widget.insert(END, "\n")
+    text_widget.insert(END, "Info:\n")
+    text_widget.insert(END, "About text\n")
+    
+    # Add an empty line
+    text_widget.insert(END, "\n")
+
+    # Make the text widget read-only
+    text_widget.config(state='disabled')
+
+# Create a text widget for output with a smaller font size
+text_font = ('Arial', 10)  # Smaller font size
+text_widget = Text(root, state='disabled', font=text_font)
+text_widget.pack(fill=BOTH, expand=YES)  # Make the text widget fill the window
+
+display_menu()
+
+root.mainloop()
