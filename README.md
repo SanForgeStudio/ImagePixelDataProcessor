@@ -6,13 +6,8 @@
 
 <p></p>
 
-<div align="center">
-
-<a href="#"><img alt="status" src="https://img.shields.io/badge/Status-Released-green"/></a>
-<img alt="Static Badge" src="https://img.shields.io/badge/Version-1.2-sucess?style=blue">
-
 #
-</div>
+
 This is a straightforward application tool made in python for generating image pixel data, which enables you to transform images into a set of variables that you can use in your programming projects.
 
 # Description
@@ -80,12 +75,20 @@ We used a bunch of libraries to make this processor work, see here the list:
   
 We use Python 3.6 or later
 
+# Status
+
+<div>
+<a href="#"><img alt="status" src="https://img.shields.io/badge/Status-Released-green"/></a>
+<img alt="Static Badge" src="https://img.shields.io/badge/Version-1.2-sucess?style=blue">
+</div>
+
 # License
 
 This project is licensed under the GNU General Public License v3.0. See the LICENSE file for more details.
 
 # Contributing
 We welcome contributions from the community. Feel free to open issues, suggest improvements, or create pull requests to enhance our Image Pixel Data Processor.
+
 
 # Author
 Image Pixel Data Processor is created by: SanForge Studio.
