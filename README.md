@@ -50,13 +50,15 @@ Here are a few features, that are currently working in this tool.
 You can install the Image Pixel Data Processor by following these simple steps:
 
 **Change the Directory:**
+First before you can execute these commands open the default windows command prompt
+
+Then locate your folder in wich this project is located
 ```bash
 cd your-project-path
 Example: C:\Users\Name\Desktop\PixelDataImageProcessor-main\Source
 ```
 
 **Install Dependencies (Make sure you have Python and pip installed):**
-
 Because we use 2 external dependancies you will have to install them.
 
 ```bash
