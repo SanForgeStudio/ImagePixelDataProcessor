@@ -1,18 +1,25 @@
 
 <div align="center">
   <img alt="sanCore" src="https://github.com/SanForgeStudio/ImagePixelDataProcessor/assets/97965051/b3998d0e-76c6-4b09-b9e2-2e92c84528cb" width="200" />
+  
 </div>
 
-##
+<p></p>
 
+<div align="center">
+
+<a href="#"><img alt="status" src="https://img.shields.io/badge/Status-Released-green"/></a>
+<img alt="Static Badge" src="https://img.shields.io/badge/Version-1.2-sucess?style=blue">
+
+#
+</div>
 This is a straightforward application tool made in python for generating image pixel data, which enables you to transform images into a set of variables that you can use in your programming projects.
 
 # Description
 This tool simplifies the process of extracting pixel data from an image and converting it into a format that can be used in your programming applications. It is particularly useful when you need to work with pixel data for tasks like image processing, computer vision, or graphics programming. By generating pixel data in a format that can be directly integrated into your code, this tool streamlines the development of image related applications.
 
 # How to use
-
-<img align="center" alt="" src="https://github.com/SanForgeStudio/ImagePixelDataProcessor/assets/97965051/308618e8-a95c-4226-9bcb-31f5caff6135" width="400" style="vertical-align:top" />
+<img align="center" alt="" src="https://github.com/SanForgeStudio/ImagePixelDataProcessor/assets/97965051/616d6047-f5e1-4a6b-808b-216a98ec8703" width="400" style="vertical-align:top" />
 
 To use this start the start.py in the source, after you installed all the required libraries.
 
