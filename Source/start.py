@@ -164,11 +164,21 @@ def display_menu():
     text_widget.config(state='normal')  # Enable text widget for backend updates
     text_widget.delete(1.0, END)  # Clear the previous output
     
-    # Add your text
-    text_widget.insert(END, "Created by: SanForge Studio\n\n")
-    text_widget.insert(END, "\n")
-    text_widget.insert(END, "Info:\n")
-    text_widget.insert(END, "About text\n")
+    # Set the text color to #ff3d00
+    text_widget.tag_configure("info", foreground="#ff3d00")
+
+    text_widget.insert(END, "Welcome to the Pixel Data Image Processor!\n", "info")
+    text_widget.insert(END, "Created by: SanForge Studio\n", "info")
+    text_widget.insert(END, "Version: 1.2\n", "info")
+    text_widget.insert(END, "\n", "info")
+    text_widget.insert(END, "========================================\n\n", "info")
+    text_widget.insert(END, "Instructions:\n\n", "info")
+    text_widget.insert(END, "1. Click on 'File' in the top left menu bar and select 'Open Image' to load your desired image.\n", "info")
+    text_widget.insert(END, "2. After loading the image, you can generate the pixel data by clicking 'Generate Pixel Data'.\n", "info")
+    text_widget.insert(END, "3. To return to the main menu, click 'Return to Menu'.\n\n", "info")
+
+    text_widget.insert(END, "Have fun processing pixel data for your images!\n", "info")
+
     
     # Add an empty line
     text_widget.insert(END, "\n")
