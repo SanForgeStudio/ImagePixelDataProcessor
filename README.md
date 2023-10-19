@@ -1,4 +1,9 @@
-# Image Pixel Data Processor
+
+<div align="center">
+  <img alt="sanCore" src="https://github.com/SanForgeStudio/ImagePixelDataProcessor/assets/97965051/b3998d0e-76c6-4b09-b9e2-2e92c84528cb" width="200" />
+</div>
+
+##
 
 Image Pixel Data Processor is a straightforward tool made in python for processing image pixel data, which enables you to transform images into a set of variables that you can use in your programming projects.
 
