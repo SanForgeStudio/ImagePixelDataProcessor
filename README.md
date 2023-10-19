@@ -12,12 +12,14 @@ This tool simplifies the process of extracting pixel data from an image and conv
 
 # How to use
 
+<img align="center" alt="" src="https://github.com/SanForgeStudio/ImagePixelDataProcessor/assets/97965051/308618e8-a95c-4226-9bcb-31f5caff6135" width="400" style="vertical-align:top" />
+
 To use this start the start.py in the source, after you installed all the required libraries.
 
-- 1. When you start, a windows application starts, and gives you a bunch of options and features.
-- 2. You can load your desired image in the top left menubar and click on Open Image.
-- 3. You can generate the pixel data by clicking generate pixel data.
-- 4. When you wanna return to the info tab you can click return to menu
+-  When you start, a windows application starts, and gives you a bunch of options and features.
+-  You can load your desired image in the top left menubar and click on Open Image.
+-  You can generate the pixel data by clicking generate pixel data.
+-  When you wanna return to the info tab you can click return to menu
 
 
 # Features
@@ -48,13 +50,10 @@ Example: C:\Users\Name\Desktop\PixelDataImageProcessor-main\Source
 
 **Install Dependencies (Make sure you have Python and pip installed):**
 
-```bash
-- Pillow
-- Tkinter
-```
+Because we use 2 external dependancies you will have to install them.
 
 ```bash
-pip install (the required dependancy)
+pip install (the required dependancies)
 
 ```
 
@@ -69,7 +68,8 @@ We used a bunch of libraries to make this processor work, see here the list:
 
 - Pillow
 - Tkinter
-- Python 3.6 or later
+  
+We use Python 3.6 or later
 
 # License
 
@@ -81,4 +81,4 @@ We welcome contributions from the community. Feel free to open issues, suggest i
 # Author
 Image Pixel Data Processor is created by: SanForge Studio.
 
-Enjoy processing image pixel data with ease!
+Enjoy generating image pixel data with ease!
