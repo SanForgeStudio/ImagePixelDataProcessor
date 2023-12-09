@@ -129,7 +129,7 @@ root.config(menu=menubar)
 # File menu
 file_menu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="Open Image", command=open_image)
+file_menu.add_command(label="Replace Image", command=open_image)
 file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.quit)
 
